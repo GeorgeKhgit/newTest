@@ -7,9 +7,14 @@ import {
   SafeAreaView,
 } from 'react-native';
 import {styles} from './style';
-import PickerItem from './components/PickerItem';
+import PickerItem from '../../components/PickerItem';
 
-const MainScreen = ({iamgesItems, saveImageFunc, history}) => {
+const MainScreen = ({
+  iamgesItems,
+  saveImageFunc,
+  photoFromGallery,
+  datailInfromation,
+}) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.titleWrapper}>
@@ -20,7 +25,11 @@ const MainScreen = ({iamgesItems, saveImageFunc, history}) => {
         <FlatList
           data={iamgesItems}
           renderItem={({item}) => (
-            <PickerItem navigation={history} info={item} />
+            <PickerItem
+              info={item}
+              addPhotoToGalleryFunc={photoFromGallery}
+              goToDetaItemFunc={datailInfromation}
+            />
           )}
           keyExtractor={(item) => item.id.toString()}
           horizontal={true}
